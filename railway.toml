@@ -31,4 +31,4 @@ TEMP_FILE_DIR = "/tmp/kokoro_temp"
 MODEL_DIR = "/app/api/src/models"
 VOICES_DIR = "/app/api/src/voices/v1_0"
 PYTHONUNBUFFERED = "1"
-PORT = "8000 
+PORT = "8000" 
