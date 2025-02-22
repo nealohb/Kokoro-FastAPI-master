@@ -1,40 +1,69 @@
 # Version control
 .git
+.gitignore
+.gitattributes
 
 # Python
-__pycache__
-*.pyc
-*.pyo
-*.pyd
-.Python
+__pycache__/
 *.py[cod]
 *$py.class
-.pytest_cache
-.coverage
-.coveragerc
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Environment
-# .env
+# Virtual environments
+.env
 .venv
 env/
 venv/
 ENV/
 
 # IDE
-.idea
-.vscode
+.idea/
+.vscode/
 *.swp
 *.swo
 
-# Project specific
-examples/
-Kokoro-82M/
-ui/
-tests/
-*.md
-*.txt
-!requirements.txt
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
 
-# Docker
-Dockerfile*
-docker-compose*
+# Temp files
+*.log
+*.tmp
+.DS_Store
+tmp/
+temp/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Development
+debug.http
+tests/
+.ruff.toml
+pytest.ini
+.coveragerc
+
+# Assets that will be downloaded during build
+assets/
+models/
+voices/

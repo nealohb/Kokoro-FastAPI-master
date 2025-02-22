@@ -1,11 +1,20 @@
 [build]
 builder = "nixpacks"
-buildCommand = "pip install -e .[cpu]"
+buildCommand = """
+mkdir -p /app/src/api
+cp -r api/src/* /app/src/api/
+pip install -e .[cpu]
+"""
 
 [deploy]
-startCommand = "uvicorn api.src.main:app --host 0.0.0.0 --port $PORT"
+startCommand = "uvicorn api.main:app --host 0.0.0.0 --port $PORT"
 healthcheckPath = "/health"
 healthcheckTimeout = 100
 
 [env]
-PYTHON_VERSION = "3.10" 
+PYTHON_VERSION = "3.10"
+USE_GPU = "false"
+OUTPUT_DIR = "/tmp/output"
+TEMP_FILE_DIR = "/tmp/kokoro_temp"
+MODEL_DIR = "/app/src/api/models"
+VOICES_DIR = "/app/src/api/voices/v1_0" 
