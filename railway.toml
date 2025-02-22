@@ -1,24 +1,28 @@
 [build]
 builder = "nixpacks"
-buildCommand = """
-# Create directory structure
-mkdir -p /app/src/api
-cp -r api/src/* /app/src/api/
-
-# Install dependencies
-python -m pip install --upgrade pip setuptools wheel
-pip install -r requirements.txt
-"""
+buildCommand = "pip install -r requirements.txt"
 
 [deploy]
 startCommand = "PYTHONPATH=/app uvicorn api.src.main:app --host 0.0.0.0 --port $PORT"
 healthcheckPath = "/health"
 healthcheckTimeout = 100
 
+[nixpacks]
+start-command = "PYTHONPATH=/app uvicorn api.src.main:app --host 0.0.0.0 --port $PORT"
+
+[phases.setup]
+nixPkgs = ["python310"]
+
+[phases.install]
+cmds = [
+    "python -m pip install --upgrade pip setuptools wheel",
+    "pip install -r requirements.txt"
+]
+
 [env]
 PYTHON_VERSION = "3.10"
 USE_GPU = "false"
 OUTPUT_DIR = "/tmp/output"
 TEMP_FILE_DIR = "/tmp/kokoro_temp"
-MODEL_DIR = "/app/src/api/models"
-VOICES_DIR = "/app/src/api/voices/v1_0" 
+MODEL_DIR = "/app/api/src/models"
+VOICES_DIR = "/app/api/src/voices/v1_0" 
