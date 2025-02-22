@@ -5,18 +5,13 @@ buildCommand = """
 mkdir -p /app/src/api
 cp -r api/src/* /app/src/api/
 
-# Copy necessary files
-cp README.md /app/
-cp pyproject.toml /app/
-cp setup.py /app/
-
 # Install dependencies
 python -m pip install --upgrade pip setuptools wheel
-python -m pip install -e .[cpu]
+pip install -r requirements.txt
 """
 
 [deploy]
-startCommand = "uvicorn api.main:app --host 0.0.0.0 --port $PORT"
+startCommand = "PYTHONPATH=/app uvicorn api.src.main:app --host 0.0.0.0 --port $PORT"
 healthcheckPath = "/health"
 healthcheckTimeout = 100
 

@@ -1,1 +1,1 @@
-web: uvicorn api.main:app --host 0.0.0.0 --port $PORT 
+web: PYTHONPATH=/app uvicorn api.src.main:app --host 0.0.0.0 --port $PORT 
