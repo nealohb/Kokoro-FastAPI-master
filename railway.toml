@@ -1,9 +1,18 @@
 [build]
 builder = "nixpacks"
 buildCommand = """
+# Create directory structure
 mkdir -p /app/src/api
 cp -r api/src/* /app/src/api/
-pip install -e .[cpu]
+
+# Copy necessary files
+cp README.md /app/
+cp pyproject.toml /app/
+cp setup.py /app/
+
+# Install dependencies
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install -e .[cpu]
 """
 
 [deploy]
